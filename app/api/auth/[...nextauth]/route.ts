@@ -1,6 +1,9 @@
 import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { prisma } from '../../../../lib/prisma';
+
 import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions: NextAuthOptions = {
@@ -10,6 +13,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  adapter: PrismaAdapter(prisma),
   // Custom login page for Google provider
   pages: {
     signIn: '/login',

@@ -1,10 +1,11 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 
 import { SignInButton, SignOutButton } from '../components/buttons';
 import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export default async function Home() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <main>
